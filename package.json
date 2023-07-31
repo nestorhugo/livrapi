@@ -12,6 +12,7 @@
   "author": "Nestor Hugo",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^8.46.0",
     "nodemon": "^2.0.15"
   },
   "dependencies": {
