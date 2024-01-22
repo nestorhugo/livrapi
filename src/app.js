@@ -1,6 +1,6 @@
 import express from "express";
 import conectaDatabase from "../config/dbConnect.js";
-import livro from "./Models/Livro.js";
+import livro from "./models/Livro.js";
 
 const conexao = await conectaDatabase();
 
@@ -19,10 +19,10 @@ app.get("/", (req, res) => {
   res.status(200).send("Buks!");
 });
 
-app.get("/livros", async (req, res) => {
-  const listaLivros = await livro.find({});
-  res.status(200).json(listaLivros);
-});
+// app.get("/livros", async (req, res) => {
+//   const listaLivros = await livro.find({});
+//   res.status(200).json(listaLivros);
+// });
 
 app.get("/livros/:id", (req, res) => {
   const index = buscaLivro(req.params.id);
