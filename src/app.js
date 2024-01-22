@@ -1,5 +1,6 @@
 import express from "express";
 import conectaDatabase from "../config/dbConnect.js";
+import livro from "./Models/Livro.js";
 
 const conexao = await conectaDatabase();
 
@@ -14,36 +15,13 @@ conexao.once("open", () =>
 const app = express();
 app.use(express.json());
 
-const livros = [
-  {
-    id: 1,
-    nome: "O Senhor dos Anéis",
-    autor: "J. R. R. Tolkien",
-  },
-  {
-    id: 2,
-    nome: "Harry Potter e a Pedra Filosofal",
-    autor: "J. K. Rowling",
-  },
-  {
-    id: 3,
-    nome: "As Crônicas de Nárnia",
-    autor: "C. S. Lewis",
-  },
-];
-
-function buscaLivro(id) {
-  return livros.findIndex((livro) => {
-    return livro.id === Number(id);
-  });
-}
-
 app.get("/", (req, res) => {
   res.status(200).send("Buks!");
 });
 
-app.get("/livros", (req, res) => {
-  res.status(200).json(livros);
+app.get("/livros", async (req, res) => {
+  const listaLivros = await livro.find({});
+  res.status(200).json(listaLivros);
 });
 
 app.get("/livros/:id", (req, res) => {
